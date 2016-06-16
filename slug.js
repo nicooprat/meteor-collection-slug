@@ -207,7 +207,15 @@ CollectionBehaviours.define('slug', function(opts = {}) {
   });
 
   this.collection.before.update((userId, doc, fieldNames, modifier, opts) => {
-    const source = (modifier.$set && modifier.$set[options.source]) ? modifier.$set[options.source] : false;
+    const source = modifier && modifier.$set && modifier.$set[options.source];
+
+    if( source ) {
+      modifier.$set[options.destination] = sluggify(source);
+    }
+  });
+
+  this.collection.before.upsert((userId, selector, modifier, opts) => {
+    const source = modifier && modifier.$set && modifier.$set[options.source];
 
     if( source ) {
       modifier.$set[options.destination] = sluggify(source);
