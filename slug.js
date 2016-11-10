@@ -158,6 +158,12 @@ const sluggify = function(str) {
   // Lower case
   slug = slug.toLowerCase();
 
+  // Remove HTML tags (<a>)
+  slug = slug.replace(/<[^>]*>/g, '');
+
+  // Remove HTML characters (&nbsp;)
+  slug = slug.replace(/&[a-z]*;/g, '');
+
   // Remove diacriticts.
   _.each(diacriticsMap, function(diacriticMap) {
     slug = slug.replace(diacriticMap.letters, diacriticMap.base);

@@ -2,7 +2,7 @@ Package.describe({
   git: 'https://github.com/nicooprat/meteor-collection-slug.git',
   name: 'nicooprat:collection-slug',
   summary: 'Add slug to collections',
-  version: '1.0.2'
+  version: '1.0.3'
 });
 
 Package.onUse(function(api) {
